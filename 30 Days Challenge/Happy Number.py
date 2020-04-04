@@ -27,3 +27,21 @@ def isHappy(self, n: int) -> bool:
       else: 
           n = result      
           seen.add(n) 
+
+# Recursive Approach --> Two pointer technique
+# def helper(n):
+#   sum = 0
+#   while n > 0:
+#       r = n % 10
+#       n = n // 10
+#       sum += r*r
+#   return sum
+# slow = n
+# fast = helper(slow)
+# while slow != fast:
+#   slow = helper(slow)
+#   fast = helper(helper(fast))
+# if fast == 1:
+#   return True
+# return False
+    
