@@ -20,7 +20,7 @@ def maxSubArray(self, nums: List[int]) -> int:
         #     max_sum = max(cur_sum, max_sum)
         # return max_sum
         
-        # Approach 3 : Kadane’s Algorithm
+        # Approach 3 : Kadane’s Algorithm : Useful if we need to show the sub-array elements.
         cur_sum, max_sum = 0, 0
         start, end, s = 0, 0, 0
         for i, num in enumerate(nums):
