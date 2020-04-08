@@ -19,7 +19,29 @@ Output =
 """
 
 # Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-
+# Level Order Using BFS
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        output = []
+        queue = [root]
+        while queue:
+            root = queue[0]
+            output.append(root.val)
+            if root.right:
+                queue.append(root.right)
+            if root.left:
+                queue.append(root.left)
+        return output
+    
+        
+    
+    
+    
 
 
