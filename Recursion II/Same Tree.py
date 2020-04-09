@@ -41,6 +41,7 @@ class Solution:
         if p.val != q.val:
             return False
         return True
+
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         if root is None:
             return True
@@ -48,7 +49,7 @@ class Solution:
         queue = deque([(p, q)])
         while queue:
             p, q = queue.popleft()
-            if not check(p, q):
+            if not self.check(p, q):
                 return False
             if p:
                 queue.append((p.left, q.left))
