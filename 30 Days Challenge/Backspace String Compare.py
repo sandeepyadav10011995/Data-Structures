@@ -12,3 +12,24 @@ Output: true
 Explanation: Both S and T become "".
 
 """
+# Stack Approach
+class Solution:
+  def helper(self, s: str) -> str:
+    stack = []
+    for letter in s:
+      if letter == "#" and len(stack) != 0:
+        stack.pop()
+      elif letter != "#":
+        stack.append(letter)
+    return "".join(stack)
+    
+  def backspaceCompare(self, S: str, T: str) -> bool:
+    s1 = self.helper(S)
+    s2 = self.helper(T)
+    if s1 == s2:
+      return True
+    return False
+  
+# TODO: Optimized Approach
+
+
