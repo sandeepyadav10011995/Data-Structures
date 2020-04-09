@@ -26,12 +26,13 @@ class TreeNode:
         self.right = None
 
 # Level Order Using BFS
+from collections import deque
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         output = []
-        queue = [root]
+        queue = deque([root])
         while queue:
-            root = queue[0]
+            root = queue.popleft()
             output.append(root.val)
             if root.right:
                 queue.append(root.right)
