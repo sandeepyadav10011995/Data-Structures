@@ -11,3 +11,34 @@ Given a binary tree
 Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 
 """
+# Definition of the binary tree.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+# Recursive Approach -- O(N^2)
+class Solution:
+    def getHeight(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        left_height = self.getHeight(root.left)
+        right_height = self.getHeight(root.right)
+        return max(left_height, right_height) + 1
+        
+    def diameterBinaryTree(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        # Left Diameter
+        diaL = self.diameterBinaryTree(root.left)
+        # Right Diameter
+        diaR = self.diameterBinaryTree(root.right)
+        # Get the left and right height for the node
+        lg, rh = 0, 0
+        if root.left:
+            lh = self.getHeight(root.left)
+        if root.right:
+            rh = self.getHeight(root.right)
+        return max(diaL, diaR, lh+rh)
+
