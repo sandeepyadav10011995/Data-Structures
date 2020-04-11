@@ -61,3 +61,17 @@ class Solution:
         return Solution.diameter
         
           
+# Using DFS --> O(N)
+class Solution:
+    def diameterBinaryTree(self, root: TreeNode) -> int:
+        self.diameter = 1
+        def dfs(root):
+            if not root:
+                return 0
+            L = depth(root.left)
+            R = depth(root.right)
+            self.diameter = max(self.diameter, L+R+1)
+            return max(L, R) + 1
+        
+        depth(root)
+        return self.diameter - 1
