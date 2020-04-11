@@ -42,3 +42,22 @@ class Solution:
             rh = self.getHeight(root.right)
         return max(diaL, diaR, lh+rh)
 
+# Opimized Recursive Approach --> O(N)
+class Solution:
+    diameter = 0
+    def helper(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        # Left Side
+        lh = self.helper(root.left)
+        rh = self.helper(root.right)
+        Solution.diameter = max(Solution.diameter, lh+rh)
+        return max(lh, rh) + 1
+    
+    def diameterBinaryTree(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        self.helper(root)
+        return Solution.diameter
+        
+          
