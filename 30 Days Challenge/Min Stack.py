@@ -44,6 +44,32 @@ class MinStack:
       return min(self.stack)
     return -1
   
+# Optimized Approach --> Making all the function call time to -> O(1)
+class MinStack:
+    def __init__(self):
+        self.stack = []
+    
+    def push(self, x: int) -> None:
+        if self.stack:
+            cur_min = min(self.stack[-1][1], x)
+            self.stack.append((x, cur_min))
+        else:
+            self.stack.append((x, x))
+   
+    def pop(self) -> None:
+        if self.stack:
+            self.stack.pop()
+    
+    def top(self) -> int:
+        if self.stack:
+            return self.stack[-1][0]
+        return -1
+    
+    def getMin(self) -> int:
+        if self.stack:
+            return self.stack[-1][0]
+        return -1
+  
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
 # obj.push(x)
