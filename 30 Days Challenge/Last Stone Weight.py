@@ -25,5 +25,24 @@ Note:
 """
 
 class Solution:
-    def lastStoneWeight():
-    
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        if len(stones) == 0:
+            return -1
+        elif len(stones) == 1:
+            return stones[-1]
+        while len(stones) > 1:
+            m1 = max(stones)
+            stones.remove(m1)
+            m2 = max(stones)
+            stones.remove(m2)
+            if m1 == m2:
+                pass
+            elif m1 > m2:
+                stones.append(m1 - m2)
+            else:
+                stones.append(m2 - m1)
+        
+        if stones:
+            return stones[-1]
+        return 0
+   
