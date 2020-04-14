@@ -14,3 +14,31 @@ Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal numb
 Note: The length of the given binary array will not exceed 50,000.
 
 """
+# Cumulative Sum Approach
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        N = len(nums)
+        # Convert the 0 to -1 so that cumulative sum becomes zero
+        for i in range(N):
+            if nums[i] == 0:
+                nums[i] = -1
+    
+        # Required Inputs
+        hash_map = {}
+        cum_sum = 0
+        max_len = 0
+        end_idx = -1
+        # Traverse the nums list
+        for i in range(N):
+            cum_sum += nums[i]
+            if cum_sum == 0:
+                max_len = i+1
+                end_idx = i
+            if cum_sum in hash_map:
+                if max_len < i - hash_map[cum_sum]:
+                    max_len = i - hash_map[cum_sum]
+            else:
+                hash_map[cum_sum] = i
+                
+         return max_len
+        
