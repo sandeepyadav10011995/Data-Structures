@@ -32,19 +32,27 @@ Follow up: Could we solve it with constant space complexity?
 
 """
 
+# Using the Multiplication Associative Property
 
-
-
-
-
-
-
-
-
-
-
-
-
+"""
+ nums = [1, 2, 3, 4] --> LP =   [1, 1, 2, 6]
+ nums = [1, 2, 3, 4] --> RP =   [24, 12, 4, 1]
+ LP * RP --> ans = [24, 12, 8, 6]
+ 
+"""
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # Get the left product
+        LP = [1]
+        for i in range(1, len(nums)-1):
+            LP.append(LP[-1] * nums[i])
+        RP = [1]
+        for i in range(len(nums)-1, 0, -1):
+            value = RP[-1] * nums[i]
+            RP.insert(0, value)
+            
+        output = [x*y for x, y in zip(LP, RP)]
+        return output
 
 
 
