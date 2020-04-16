@@ -9,23 +9,20 @@ Constraint: It's guaranteed that the product of the elements of any prefix or su
 """
 
 
+# Bruteforce Solution
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # Calculate the product of all the elements
+        product = 1
+        for num in nums:
+            product *= num
+        
+        output = []
+        for num in nums:
+            output.append(product//num)
+        
+        return output
 
 
 """
@@ -34,7 +31,6 @@ Follow up: Could we solve it with constant space complexity?
 (The output array does not count as extra space for the purpose of space complexity analysis.)
 
 """
-
 
 
 
