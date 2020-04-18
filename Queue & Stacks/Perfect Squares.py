@@ -12,3 +12,15 @@ Output: 2
 Explanation: 13 = 4 + 9.
 
 """
+class Solution:
+    def numSquares(self, n: int) -> int:
+        if n==1:
+            return 1
+        squares = [i*i for i in range(1, (n//2)+1) if i*i <= n]
+        dp = [float(inf) for _ in range(n+1)]
+        dp[0] = 0
+        for square in squares:
+            for num in range(square, n+1):
+                dp[num] = min(dp[num], dp[num-square]+1)
+                
+        return dp[-1]
