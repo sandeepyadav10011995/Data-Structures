@@ -30,6 +30,7 @@ class Solution:
         return neighbors
     
     def wallsAndGates(self, rooms: List[List[int]]) -> List[List[int]]:
+        INF = 2147483647
         rows = len(rooms)
         # Edge Case
         if rows == 0:
