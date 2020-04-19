@@ -40,7 +40,7 @@ class Solution:
         if l2 is None:
             return l1
         # Other Cases
-        head = ListNode()
+        head = ListNode() # --> Dummy Variable
         prev = head
         while l1 and l2:
             if l1.val <= l2.val:
