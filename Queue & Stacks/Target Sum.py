@@ -19,7 +19,7 @@ There are 5 ways to assign symbols to make the sum of nums be target 3.
 class Solution:
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
         def helper(nums, total, i, S):
-            # BAse Case
+            # Base Case
             if i == len(nums):
                 if total == S:
                     return 1
