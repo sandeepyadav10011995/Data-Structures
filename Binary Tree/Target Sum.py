@@ -17,3 +17,19 @@ Explanation:
 There are 5 ways to assign symbols to make the sum of nums be target 3.
 
 """
+
+# Recursive Approach
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        def helper(nums, total, i, S):
+            # BAse Case
+            if i == len(nums):
+                if total == S:
+                    return 1
+                else:
+                    return 0
+            return helper(nums, total + nums[i], i+1, S) + helper(nums, total - nums[i], i+1, S)
+        return helper(nums, 0, 0, S)
+
+
