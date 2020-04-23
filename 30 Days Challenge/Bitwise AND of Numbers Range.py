@@ -10,3 +10,12 @@ Input: [0,1]
 Output: 0
 
 """
+
+# Brute-Force Solution
+class Solution:
+
+
+
+# Optimized Solution --> Using LSB (Left Significant Bit)
+class Solution:
+
