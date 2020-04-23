@@ -13,9 +13,17 @@ Output: 0
 
 # Brute-Force Solution
 class Solution:
-
+    def rangeBitwiseAnd(self, m: int, n: int) -> int:
+        output = m
+        for i in range(m+1, n+1):
+            output = output & i
+        return output
 
 
 # Optimized Solution --> Using LSB (Left Significant Bit)
 class Solution:
+    def rangeBitwiseAnd(self, m: int, n: int) -> int:
+        while m < n:
+            n -= (n & -n)
+        return n
 
