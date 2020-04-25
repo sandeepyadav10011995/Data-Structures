@@ -18,3 +18,18 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum
 
 
 """
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        # Edge Case
+        if len(nums) <= 1:
+            return True
+        if nums[0] == 0:
+            return False
+        
+        max_value = nums[0]
+        for i in range(len(nums)-1):
+            max_value = max(max_value, i+nums[i])
+            if max_value == i and nums[i] == 0:
+                return False
+        return True
