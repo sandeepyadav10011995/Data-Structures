@@ -13,3 +13,17 @@ Output: tail connects to node index 1
 Explanation: There is a cycle in the linked list, where tail connects to the second node.
 
 """
+
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        slow = head
+        # Go until end of list
+        idx = 0
+        hash_set = set()
+        while head is not None and head.next is not None:
+            if head in hash_set:
+                return head
+            hash_set.add(head)
+            head = head.next
+        return None
