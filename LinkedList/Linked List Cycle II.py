@@ -27,3 +27,5 @@ class Solution:
             hash_set.add(head)
             head = head.next
         return None
+    
+    
