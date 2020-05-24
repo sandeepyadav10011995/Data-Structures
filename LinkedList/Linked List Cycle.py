@@ -9,6 +9,9 @@ Output: true
 Explanation: There is a cycle in the linked list, where tail connects to the second node.
 
 """
+# Brute Force Solution: Using a Hash Table --> Time Complexity : O(N) and Space Complexity : O(N)
+
+# Optimized Solution : Using Two Pionter Technique -->  Time Complexity : O(N) and Space Complexity : O(1)
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         # Begin both pointers at the head node
