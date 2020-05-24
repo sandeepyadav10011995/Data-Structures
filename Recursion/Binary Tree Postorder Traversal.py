@@ -38,10 +38,10 @@ class Solution:
       while stack_1:
          root = stack_1.pop()
          stack_2.append(root.val)
-         if root.right:
-            stack_1.append(root.right)
          if root.left:
             stack_1.append(root.left)
+         if root.right:
+            stack_1.append(root.right)
       
       output = []
       while stack_2:
