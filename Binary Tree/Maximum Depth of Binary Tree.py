@@ -15,3 +15,21 @@ Given binary tree [3,9,20,null,null,15,7],
    
 Ans = 3
 """
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+		
+# Recursive Approach
+class Solution:
+	def maxDepth(self, root: TreeNode) -> int:
+        # Base Case
+        if root is None:
+            return 0
+        lh = self.maxDepth(root.left)
+        rh = self.maxDepth(root.right)
+        return max(lh, rh) + 1
+	
+	
