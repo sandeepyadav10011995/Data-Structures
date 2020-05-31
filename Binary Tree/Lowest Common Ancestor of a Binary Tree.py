@@ -29,6 +29,7 @@ class Solution:
 			
 			leftSearchResult = self.lowestCommonAncestor(root.left, p, q)
 			rightSearchResult = self.lowestCommonAncestor(root.right, p, q)
+			
 			# Condition Check
 			if leftSearchResult is None: return rightSearchResult
 			if rightSearchResult is None : return leftSearchResult
