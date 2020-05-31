@@ -16,3 +16,26 @@ Recursive approach is fine, you may assume implicit stack space does not count a
 
 
 """
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+# BFS Optimized Approach		
+class Solution:
+	def connect(self, root: Node) -> Node:
+		node = root
+		if node and node.left:
+			node.left.next = node.right
+			if node.next:
+				node.right.next = node.next.left
+			self.connect(node.left)
+			self.connect(node.right)
+		return root
+
+
+
+
+
