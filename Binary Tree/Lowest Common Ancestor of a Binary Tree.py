@@ -11,3 +11,27 @@ Output: 3
 Explanation: The LCA of nodes 5 and 1 is 3.
 
 """
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+		
+		
+# Recusive Approach
+class Solution:
+	 def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+			# Base Case
+			if root is None: return root
+			# Check p and q if equal to root
+			if root.val == p.val or root.val == q.val: return root
+			
+			leftSearchResult = self.lowestCommonAncestor(root.left, p, q)
+			rightSearchResult = self.lowestCommonAncestor(root.right, p, q)
+			# Condition Check
+			if leftSearchResult is None: return rightSearchResult
+			if rightSearchResult is None : return leftSearchResult
+			
+			return root
+			
