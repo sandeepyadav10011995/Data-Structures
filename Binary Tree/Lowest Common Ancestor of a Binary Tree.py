@@ -21,18 +21,18 @@ class TreeNode:
 		
 # Recusive Approach
 class Solution:
-	 def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-			# Base Case
-			if root is None: return root
-			# Check p and q if equal to root
-			if root.val == p.val or root.val == q.val: return root
-			
-			leftSearchResult = self.lowestCommonAncestor(root.left, p, q)
-			rightSearchResult = self.lowestCommonAncestor(root.right, p, q)
-			
-			# Condition Check
-			if leftSearchResult is None: return rightSearchResult
-			if rightSearchResult is None : return leftSearchResult
-			
-			return root
+	# Base Case
+	if root is None:
+		return root
+	if root.val == p.val or root.val == q.val:
+		return root
+
+	leftSearchResult = self.lowestCommonAncestor(root.left, p, q)
+	rightSearchResult = self.lowestCommonAncestor(root.right, p, q)
+
+	# Check the results
+	if leftSearchResult is None: return rightSearchResult
+	if rightSearchResult is None: return leftSearchResult
+
+	return root
 			
