@@ -22,5 +22,25 @@ class Solution:
                 prev_node = curr_node
             curr_node = curr_node.next
         return head
+	
+	
+# USing Sentinel Node
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        # Edge Case
+        if not head:
+            return head
+        sentinel = ListNode(-1)
+        sentinel.next = head
+        curr_node = head
+        prev_node = sentinel
+        while curr_node:
+            if curr_node.val == val:
+                prev_node.next = curr_node.next
+            else:
+                prev_node = curr_node
+            curr_node = curr_node.next
+        return sentinel.next	
+	
         
 		
