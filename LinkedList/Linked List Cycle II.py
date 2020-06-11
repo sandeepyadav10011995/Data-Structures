@@ -25,12 +25,11 @@ class Solution:
             if head in hash_set:
                 return head
             hash_set.add(head)
-            head = head.next
-            
-            
-            
-
+            head = head.next      
         return None
+
+    
+    
 # Follow Up: Can you solve it without using extra space?
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode: 
