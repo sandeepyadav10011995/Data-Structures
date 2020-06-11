@@ -26,6 +26,25 @@ class Solution:
                 return head
             hash_set.add(head)
             head = head.next
+            
+            
+            
+
         return None
-    
-    
+# Follow Up: Can you solve it without using extra space?
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode: 
+        dummy = ListNode(-1)
+        dummy.next = head
+        slow = fast = dummy
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            # If cylce is present
+            if slow == fast:
+                while dummy:
+                    if dummy == slow:
+                        return dummy
+                    slow = slow.next
+                    dummy = dummy.next
+            return None
