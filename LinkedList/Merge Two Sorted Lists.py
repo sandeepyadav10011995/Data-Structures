@@ -26,7 +26,8 @@ class Solution:
         #         p2.next = helper(p1, p2.next)
         #         return p2
         # return helper(l1, l2)
-        # Iterative Approach
+        
+		# Iterative Approach --> Using Sentinel Node()
         prehead = ListNode(-1)
         prev = prehead
         
