@@ -22,7 +22,7 @@ class TreeNode:
         self.left = None
         self.right = None
 		
-# Recursive Approach
+# Recursive Approach --> Bottom-Up Approach
 class Solution:
 	def maxDepth(self, root: TreeNode) -> int:
         # Base Case
@@ -32,4 +32,21 @@ class Solution:
         rh = self.maxDepth(root.right)
         return max(lh, rh) + 1
 	
+	
+# Recursive Approach --> Top-Down Approach
+class Solution:
+	def maxDepth(self, root: TreeNode) -> int:
+		def helper(root, depth):
+			nonlocal answer
+			# Base Case
+			if root is None:
+				return
+			# If node is a leaf node
+			if root.left is None and root.right is None:
+				answer = max(answer, depth)
+			helper(root.left, depth+1)
+			helper(root.right, depth+1)
+		answer = 0
+		helper(root, 1)
+		return answer
 	
