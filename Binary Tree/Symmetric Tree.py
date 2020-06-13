@@ -16,6 +16,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+# Recursive Solution
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
         # Base Case
@@ -35,3 +36,24 @@ class Solution:
         return helper(root.left, root.right)
 
 
+# Iterative Approach --> BFS
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        # Base Case
+        if root is None:
+            return True
+        # Base Case
+        if root is None:
+            return True
+        queue = [(root, root)]
+        while queue:
+            p, q = queue.pop()
+            if not p and not q:
+                continue
+            if not p or not q:
+                return False
+            if p.val != q.val:
+                return False
+            queue.append((p.left, q.right))
+            queue.append((p.right, q.left))
+        return True
