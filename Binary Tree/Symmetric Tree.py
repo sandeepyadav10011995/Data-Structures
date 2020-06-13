@@ -42,9 +42,6 @@ class Solution:
         # Base Case
         if root is None:
             return True
-        # Base Case
-        if root is None:
-            return True
         queue = [(root, root)]
         while queue:
             p, q = queue.pop()
