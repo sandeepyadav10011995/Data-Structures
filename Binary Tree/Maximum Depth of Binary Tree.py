@@ -49,4 +49,17 @@ class Solution:
 		answer = 0
 		helper(root, 1)
 		return answer
+
+ # Iterative Approach --> Top-Down Approach(Pre-Order Traversal)
+class Solution:
+	def maxDepth(self, root: TreeNode) -> int:
+        depth = 0
+		stack = [(root, 1)]
+		while stack:
+			node, cur_depth = stack.pop()
+			if node is not None:
+				depth = max(depth, cur_depth)
+				stack.append([node.right, cur_depth+1])
+				stack.append([node.left, cur_depth+1])
+		return depth
 	
