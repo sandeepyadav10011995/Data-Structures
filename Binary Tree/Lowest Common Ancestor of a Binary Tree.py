@@ -37,3 +37,30 @@ class Solution:
         
         return root
 			
+		
+# Iterative Approach --> Top-Down(Pre-Order)
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Dictionary --> parent pointers
+        parent_map = {root: None}
+        # Tree Traversal
+        stack = [root]
+        while p not in parent_map or q not in parent_map:
+            node = stack.pop()
+            if node.left:
+                parent_map[node.left] = node
+                stack.append(node.left)
+            if node.right:
+                parent_map[node.right] = node
+                stack.append(node.right)    
+        # Collect all the ancestors for p
+        ancestors = set()
+        while p:
+            ancestors.add(p)
+            p = parent_map[p]
+        # Look for common ancestors of q in p ancestors set
+        while q not in ancestors:
+            q = parent_map[q]
+        
+        return q
+            
