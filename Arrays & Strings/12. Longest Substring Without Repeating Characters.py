@@ -1,3 +1,19 @@
+"""
+Given a string s, return the length of the longest substring of s without repeating characters.
+
+Example 1:
+Input: : "ABCABADEC"
+Output: 5
+Explanation: Though there are substrings such as "AB" and "ABC" that have all unique characters, "BADEC" is the longest unique character substring.
+
+Example 2:
+Input: : ""
+Output: 0
+
+Constraints:
+All letters will be uppercase A-Z
+"""
+
 class Solution:
     def sliding_window(self, s):
         hash_set = set()
