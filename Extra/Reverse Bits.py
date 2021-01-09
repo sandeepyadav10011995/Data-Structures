@@ -36,6 +36,6 @@ class Solution:
             if input & 1 == 1:
                 output |= 1
             input = input >> 1
-       return output
+        return output
 
 
