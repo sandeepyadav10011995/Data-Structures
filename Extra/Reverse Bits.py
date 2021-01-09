@@ -28,3 +28,14 @@ Under base 2 (fit into 16 bits): 0001000001110001
 Constraints:
 input will always be strictly greater than or equal to 0
 """
+class Solution:
+    def reverseBits(self, input):
+        output = 0
+        while input != 0:
+            output = output << 1
+            if input & 1 == 1:
+                output |= 1
+            input = input >> 1
+       return output
+
+
