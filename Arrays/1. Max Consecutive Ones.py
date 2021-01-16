@@ -43,6 +43,29 @@ class Solution:
                 j += 1
                 i = j
         return max_ones
+    
+    def findMaxConsecutiveOnesWithZeros(self, nums) -> int:
+        longest_sequence = 0
+        left, right = 0, 0
+        num_zeros = 0
+        while right < len(nums):
+            # Consider the zero to be flipped since only one flip at most is allowed !!
+            if nums[right] == 0:
+                num_zeros += 1
+
+            # Check whether the num_zeros > 1
+            while num_zeros == 0:
+                if nums[left] == 0:
+                    num_zeros -= 1
+                left += 1
+
+            # Update the longest sequence
+            longest_sequence = max(longest_sequence, right-left+1)
+
+            # Increase the window size
+            right += 1
+
+        return longest_sequence
 
 
 sol = Solution()
