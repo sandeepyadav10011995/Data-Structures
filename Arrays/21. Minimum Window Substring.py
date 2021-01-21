@@ -72,4 +72,58 @@ class Solution:
             
         return "" if ans.min_window_size == float("inf") else s[ans.start:ans.right+1]
     
+    # Follow Up --> Can we do it better ? What if s >>>>>>>> t ? Goal --> (N)
+    # Yes --> We are unnecessarily storing the other chars in sliding_window which are not even contributing.
+    
+    def minWindowOptimized(self, s, t):
+        # Edge Case
+        if not s or not t :
+            return ""
+        
+        # Dict to keep the count of unique chars in desired output
+        dict_t = Counter(t)
+        # Dict for the sliding window that keeps count of unique charcters.
+        sliding_window = {}
+        
+        # Filter the string "s"
+        filtered_s = []
+        for idx, char in enumerate(s):
+            if char in dict_t:
+                filtered_s.append((char, idx))
+        
+        # Count of all the unique chars required in t
+        required = len(dict_t)
+        # Counter that keeps track of unique char required in t present in the sliding window
+        formed = 0
+        
+        # Answer to store to store the min_window_size and the start and end points
+        ans = Answer(flaot("inf"), 0, 0)
+        
+        # Two Pointers to traverse the string
+        left, right = 0, 0
+        
+        while right < len(filtered_s):
+            char = filtered_s[right][0]
+            # Make an entry or Update the sliding window --> Expanding
+            sliding_window[char] = sliding_window.get(char, 0) + 1
+            # If the char contributes to get desired substring
+            if char in dict_t and sliding_window[char] == dict_t[char]:
+                formed += 1
+            # Try if we can Contract --> "Just Like Caterpillar"
+            while left <= right and formed == required:
+                char = filtered_s[left][0]
+                # Update the ans
+                if right-left+1 < ans.min_window_size:
+                    ans = Answer(right-left+1, left, right)
+                sliding_window[char] -= 1
+                if char in dict_t and sliding_window[char] < dict_t[char]:
+                    formed -= 1
+                left += 1
+            right += 1
+         
+         return "" if ans.min_window_size == float("inf") else s[ans.left:ans.right+1]
+        
+        
+        
+
     
