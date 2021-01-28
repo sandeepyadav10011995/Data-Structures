@@ -1,5 +1,7 @@
 """
-Given the root of a binary search tree and the lowest and highest boundaries as low and high, trim the tree so that all its elements lies in [low, high]. Trimming the tree should not change the relative structure of the elements that will remain in the tree (i.e., any node's descendant should remain a descendant). It can be proven that there is a unique answer.
+Given the root of a binary search tree and the lowest and highest boundaries as low and high, trim the tree so that all its elements lies in [low, high]. 
+Trimming the tree should not change the relative structure of the elements that will remain in the tree (i.e., any node's descendant should remain a descendant). 
+It can be proven that there is a unique answer.
 
 Return the root of the trimmed binary search tree. Note that the root may change depending on the given bounds.
 
@@ -32,3 +34,25 @@ The value of each node in the tree is unique.
 root is guaranteed to be a valid binary search tree.
 0 <= low <= high <= 104
 """
+
+class Solution:
+    
+    def trim(self, node, low, high):
+        # Base Case
+        if not node:
+            return None
+        elif node.val < low:
+            return self.trim(node.right, low, high)
+        elif node.val > high:
+            return self.trim(node.left, low, high)
+        else:
+            node.left = self.trim(node.left, low, high)
+            node.right = self.trim(node.right, low, high)
+            return node
+    def trimBST(self, root):
+        return trim(root, low, high)
+    
+   
+sol = Solution()
+print(sol.trimBST(root, low, high))
+
