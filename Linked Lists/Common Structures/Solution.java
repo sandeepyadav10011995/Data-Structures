@@ -5,7 +5,7 @@ class GraphVertex {
     # Constructor
     public GraphVertex(int val) {
         this.val = val;
-        adjacents = new ArrayList<GraphVertex>();  # A list of adjacent GraphVertex's
+        adjacents = new ArrayList<GraphVertex>();
     }
 }
 
