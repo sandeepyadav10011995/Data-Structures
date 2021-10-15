@@ -41,7 +41,7 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    def get(self, index):
+    def get(self, index) -> int:
         # Edge Case
         if index < 0 or index > self.size:
             return -1
@@ -50,13 +50,13 @@ class LinkedList:
             dummy_head = dummy_head.next
         return dummy_head.val
 
-    def addToHead(self, val):
+    def addToHead(self, val) -> None:
         new_node = Node(val)
         new_node.next = self.head
         self.head = new_node
         self.size += 1
 
-    def addToTail(self, val):
+    def addToTail(self, val) -> None:
         cur = self.head
         new_node = Node(val)
         while cur.next:
@@ -64,7 +64,7 @@ class LinkedList:
         cur.next = new_node
         self.size += 1
 
-    def deleteAtIndex(self, index):
+    def deleteAtIndex(self, index) -> None:
         # Edge Case
         if index < 0  or index > self.size:
             return
@@ -77,9 +77,9 @@ class LinkedList:
             cur.next = cur.next.next
         self.size -= 1
 
-    def size(self):
+    def size(self) -> int:
         return self.size
 
-    def isEmpty(self):
+    def isEmpty(self) -> bool:
         return self.size == 0
 
