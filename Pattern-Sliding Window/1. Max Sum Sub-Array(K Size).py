@@ -16,7 +16,8 @@ Questions Variants
                     a. Largest sub-string with no more than k distinct characters.
                     b. String Permutations
 
-Question: Given an array, find the average of all sub-arrays of ‘K’ contiguous elements in it.
+Question: Given an array of positive numbers and a positive number ‘k,’ find the maximum sum of any contiguous
+          sub-array of size ‘k’.
 Example:
 Output:
 
@@ -25,28 +26,28 @@ Output:
 from typing import List
 
 
-class Average:
+class MaxSumSubArray:
     @staticmethod
-    def find_avg_of_sub_array(nums: List[int], k: int) -> List[float]:
-        result = []
+    def find_max_sum_sub_array(nums: List[int], k: int) -> int:
+        max_sum = 0
         window_sum = 0
-        window_start, window_end = 0, 0
+        window_start = 0
         for window_end in range(len(nums)):
             window_sum += nums[window_end]
 
             # slide the window, we don't need to slide if we've not hit the required window size of 'k'
             if window_end >= k-1:
-                result.append(window_sum/k)  # calculate the avg
+                max_sum = max(max_sum, window_sum)  # update the max-sum
                 window_sum -= nums[window_start]  # sub the element going out
                 window_start += 1  # slide the window ahead
 
-        return result
+        return max_sum
 
 
 def main():
-    avg = Average()
-    result = avg.find_avg_of_sub_array([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)
-    print("Averages of sub-arrays of size K: " + str(result))
+    msa = MaxSumSubArray()
+    print("Maximum sum of a sub-array of size K: " + str(msa.find_max_sum_sub_array([2, 1, 5, 1, 3, 2], 3)))
+    print("Maximum sum of a sub-array of size K: " + str(msa.find_max_sum_sub_array([2, 3, 4, 1, 5], 2)))
 
 
 main()
@@ -54,5 +55,5 @@ main()
 
 """
 Overall TC : O(2N) --> O(N)
-Overall SC: O(N) --> O(N)
+Overall SC: O(1) --> O(1)
 """
