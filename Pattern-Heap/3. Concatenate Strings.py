@@ -33,49 +33,53 @@ Input :
 Output :
 
 ------------------------------------CODE-----------------------------------
-"""
+Approach 1 : Using arrays
+            1. Sort the array --> O(NlogN)
+            2. Insertion --> O(N^2)
 
 
-class Heap:  # Max Heap
-    @staticmethod
-    def swap(nums: list[int], i: int, j: int) -> None:
-        nums[i], nums[j] = nums[j], nums[i]
 
-    def makeHeap(self, nums: list[int], size: int) -> list[int]:
-        i = (size//2) - 1
-        while i >= 0:
-            self.heapify(nums, i, size)
-            i -= 1
-        return nums
-
-    def heapify(self, nums: list[int], i: int, size: int) -> None:
-        if i >= size: return
-        if 2*i+1 >= size: return
-        if 2*i+2 >= size:
-            max_idx = 2*i + 1
-        else:
-            if nums[2*i+2] > self.nums[2*i+1]:
-                max_idx = 2*i+2
-            else:
-                max_idx = 2*i+1
-
-        if nums[max_idx] > nums[i]:  # or max_idx != i
-            self.swap(nums, max_idx, i)
-            self.heapify(nums, max_idx, size)
-
-    def percolate_up(self, nums: list[int], i: int) -> None:
-        if i == 0: return
-        parent = (i-1) // 2
-        if nums[i] > nums[parent]:
-            self.swap(nums, i, parent)
-            self.percolate_up(nums, parent)
-
-
-arr = [3, 1, 5, 4, 2, 7, 8, 9]
-hs = Heap()
-print(hs.makeHeap(arr, len(arr)))
+Approach 2: Using Min Heap
+            1. Create a MinHeap using makeHeap i.e. heapify --> O(N)
+            2. Pop two elements --> 2*O(logN)
+            3. Add them and push the final value in MinHeap  --> O(logN)
+            4. Continue step 2-3 until one element if left in MinHeap --> 3*(N-1)*O(logN)
 
 """
-Overall TC : 
-Overall SC: 
+
+# Built-In Min Heap
+from heapq import *
+
+
+class StringConcatenationCost:
+    def __init__(self, nums):
+        self.nums = nums
+
+    def costCS(self):
+        # Create a MinHeap
+        minHeap = self.nums[:]
+        heapify(minHeap)  # O(N) --> makeHeap
+        print(minHeap)
+
+        # Pop two min values --> Add them and put the final value back into the minHeap --> until only single value is
+        # left
+        cost = 0
+        while len(minHeap) > 1:
+            val1 = heappop(minHeap)  # O(logN)
+            val2 = heappop(minHeap)  # O(logN)
+            val3 = val1 + val2
+            cost += val3
+            heappush(minHeap, val3)  # O(logN)
+        print(cost)
+
+
+arr = [10, 15, 6, 2, 105, 200, 5]
+arr2 = [101, 100, 2, 1]
+scc = StringConcatenationCost(arr2)
+scc.costCS()
+
+
+"""
+Overall TC : O(N) + (N-1)3*O(logN) ~ O(NlogN)
+Overall SC: O(N)
 """

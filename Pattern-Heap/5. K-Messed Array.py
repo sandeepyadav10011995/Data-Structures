@@ -27,55 +27,45 @@
     S2 = 2N - logN ~ 2N
 
 
-Question : Implement Heap ?
-Example -:
+Question : K-Messed Array i.e an element can present between i-K to i+k in the array, So we have restore the array,
+           you have to sort the array in minimum time.
+            2 4 5  7 9 12 15 17
+Example -: [4 2 7 12 5 9 17 15]
+            0 1 2  3 4 5  6  7
 Input :
 Output :
 
 ------------------------------------CODE-----------------------------------
+ Approach 1: Sorting
+            TC: O(NlogN)
+
+Suppose k<<<<N, then above sol is not a good solution
+
+Approach 2: MinHeap of Fixed Window size
+            TC: O(NlogK)
 """
+from heapq import *
 
 
-class Heap:  # Max Heap
+class KMessedArray:
     @staticmethod
-    def swap(nums: list[int], i: int, j: int) -> None:
-        nums[i], nums[j] = nums[j], nums[i]
+    def kMessedArray(nums, k):
+        min_heap = []
+        window_size = k+1
+        # First put the first k+1 elements in the minHeap
+        for i in range(window_size):
+            heappush(min_heap, nums[i])
 
-    def makeHeap(self, nums: list[int], size: int) -> list[int]:
-        i = (size//2) - 1
-        while i >= 0:
-            self.heapify(nums, i, size)
-            i -= 1
+        # Go through the rest of the array and sort the array.
+        for j in range(window_size, len(nums)+window_size):
+            nums[j-window_size] = heappop(min_heap)
+            if j < len(nums):
+                heappush(min_heap, nums[j])
+
         return nums
 
-    def heapify(self, nums: list[int], i: int, size: int) -> None:
-        if i >= size: return
-        if 2*i+1 >= size: return
-        if 2*i+2 >= size:
-            max_idx = 2*i + 1
-        else:
-            if nums[2*i+2] > self.nums[2*i+1]:
-                max_idx = 2*i+2
-            else:
-                max_idx = 2*i+1
 
-        if nums[max_idx] > nums[i]:  # or max_idx != i
-            self.swap(nums, max_idx, i)
-            self.heapify(nums, max_idx, size)
+arr = [4, 2, 7, 12, 5, 9, 17, 15]
+kma = KMessedArray()
+print(kma.kMessedArray(nums=arr, k=2))
 
-    def percolate_up(self, nums: list[int], i: int) -> None:
-        if i == 0: return
-        parent = (i-1) // 2
-        if nums[i] > nums[parent]:
-            self.swap(nums, i, parent)
-            self.percolate_up(nums, parent)
-
-
-arr = [3, 1, 5, 4, 2, 7, 8, 9]
-hs = Heap()
-print(hs.makeHeap(arr, len(arr)))
-
-"""
-Overall TC : 
-Overall SC: 
-"""
