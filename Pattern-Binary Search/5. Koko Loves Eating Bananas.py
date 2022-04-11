@@ -44,36 +44,78 @@ b.  Decide return value. Is it return left or return left - 1? Remember this: af
     minimal k satisfying the condition function;
 c.  Design the condition function. This is the most difficult and most beautiful part. Needs lots of practice.
 
+Advance Application: However, more often are the situations where the search space and search target are not so readily
+                     available. Sometimes we won't even realize that the problem should be solved with binary search -->
+                     we might just turn to dynamic programming or DFS and get stuck for a very long time.
 
-Problem : First Bad Version [Easy]
-          You are a product manager and currently leading a team to develop a new product. Since each version is
-          developed based on the previous version, all the versions after a bad version are also bad. Suppose you have
-          n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to
-          be bad. You are given an API bool isBadVersion(version) which will return whether version is bad.
+Then "When can we use binary search?"
+*   If we can discover some kind of monotonicity, for example,
+    a. if condition(k) is True then;
+    b. condition(k + 1) is True ==> then we can consider binary search.
 
-Example: Given n = 5, and version = 4 is the first bad version.
-         call isBadVersion(3) -> false
-         call isBadVersion(5) -> true
-         call isBadVersion(4) -> true
+Problem : Koko Eating Bananas [Medium]
+    Koko loves to eat bananas. There are N piles of bananas, the i-th pile has piles[i] bananas. The guards have gone
+    and will come back in H hours. Koko can decide her bananas-per-hour eating speed of K. Each hour, she chooses some
+    pile of bananas, and eats K bananas from that pile. If the pile has less than K bananas, she eats all of them
+    instead, and won't eat any more bananas during this hour.
 
-         Then 4 is the first bad version.
+    Koko likes to eat slowly, but still wants to finish eating all the bananas before the guards come back. Return the
+    minimum integer K such that she can eat all the bananas within H hours.
+
+Algo : Initialize;
+            left = 1
+            right = max(piles)
+            condition ~ feasible: speed
+
+Example :
+    Input: piles = [3,6,7,11], H = 8
+    Output: 4
+
+    Input: piles = [30,11,23,4,20], H = 5
+    Output: 30
+
+    Input: piles = [30,11,23,4,20], H = 6
+    Output: 23
 
 """
 
 
 class Solution:
-    def isBadVersion(self, m: int) -> bool:
-        pass
+    def __init__(self) -> None:
+        self.piles = []
+        self.H = 0
 
-    def firstBadVersion(self, n: int) -> int:
-        # Search Space --> [1, 2, 3, ..., n]
-        left = 1
-        right = n
+    def feasible(self, speed: int) -> bool:
+        return sum(((pile - 1) // speed) + 1 for pile in self.piles) <= self.H  # faster
+
+    def min_eating(self, piles: list[int], H: int) -> int:
+        self.piles = piles
+        self.H = H
+
+        left = 1  # Bcz Koko can only choose 1 pile of bananas only
+        right = max(self.piles)
 
         while left < right:
-            mid = left + (right-left)//2
-            if self.isBadVersion(mid):
+            mid = left + (right - left) // 2
+            if self.feasible(mid):
                 right = mid
             else:
                 left = mid + 1
         return left
+
+
+sol = Solution()
+# Example 1
+piles1 = [3, 6, 7, 11]
+H1 = 8
+print(sol.min_eating(piles=piles1, H=H1))
+
+# Example 2
+piles2 = [30, 11, 23, 4, 20]
+H2 = 5
+print(sol.min_eating(piles=piles2, H=H2))
+
+# Example 3
+piles3 = [30, 11, 23, 4, 20]
+H3 = 6
+print(sol.min_eating(piles=piles3, H=H3))

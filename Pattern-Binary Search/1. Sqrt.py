@@ -45,35 +45,28 @@ b.  Decide return value. Is it return left or return left - 1? Remember this: af
 c.  Design the condition function. This is the most difficult and most beautiful part. Needs lots of practice.
 
 
-Problem : First Bad Version [Easy]
-          You are a product manager and currently leading a team to develop a new product. Since each version is
-          developed based on the previous version, all the versions after a bad version are also bad. Suppose you have
-          n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to
-          be bad. You are given an API bool isBadVersion(version) which will return whether version is bad.
+Problem : Sqrt(x) [Easy]
+          Implement int sqrt(int x). Compute and return the square root of x, where x is guaranteed to be a non-negative
+          integer. Since the return type is an integer, the decimal digits are truncated and only the integer part of
+          the result is returned.
 
-Example: Given n = 5, and version = 4 is the first bad version.
-         call isBadVersion(3) -> false
-         call isBadVersion(5) -> true
-         call isBadVersion(4) -> true
-
-         Then 4 is the first bad version.
+Example:
+    Input: 4
+    Output: 2
 
 """
 
 
 class Solution:
-    def isBadVersion(self, m: int) -> bool:
-        pass
-
-    def firstBadVersion(self, n: int) -> int:
+    def my_sqrt(self, n: int) -> int:
         # Search Space --> [1, 2, 3, ..., n]
-        left = 1
-        right = n
+        left = 0
+        right = n + 1  # To deal with special cases like n = 0, n = 1
 
         while left < right:
-            mid = left + (right-left)//2
-            if self.isBadVersion(mid):
+            mid = left + (right - left) // 2
+            if mid * mid > n:
                 right = mid
             else:
                 left = mid + 1
-        return left
+        return left - 1  # `left` is the minimum k value, `k - 1` is the answer

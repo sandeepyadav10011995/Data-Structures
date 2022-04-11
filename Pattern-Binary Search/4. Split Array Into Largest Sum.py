@@ -44,36 +44,78 @@ b.  Decide return value. Is it return left or return left - 1? Remember this: af
     minimal k satisfying the condition function;
 c.  Design the condition function. This is the most difficult and most beautiful part. Needs lots of practice.
 
+Advance Application: However, more often are the situations where the search space and search target are not so readily
+                     available. Sometimes we won't even realize that the problem should be solved with binary search -->
+                     we might just turn to dynamic programming or DFS and get stuck for a very long time.
 
-Problem : First Bad Version [Easy]
-          You are a product manager and currently leading a team to develop a new product. Since each version is
-          developed based on the previous version, all the versions after a bad version are also bad. Suppose you have
-          n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to
-          be bad. You are given an API bool isBadVersion(version) which will return whether version is bad.
+Then "When can we use binary search?"
+*   If we can discover some kind of monotonicity, for example,
+    a. if condition(k) is True then;
+    b. condition(k + 1) is True ==> then we can consider binary search.
 
-Example: Given n = 5, and version = 4 is the first bad version.
-         call isBadVersion(3) -> false
-         call isBadVersion(5) -> true
-         call isBadVersion(4) -> true
 
-         Then 4 is the first bad version.
+Problem : Split Array Largest Sum [Hard]
+          Given an array which consists of non-negative integers and an integer m, you can split the array into m
+          non-empty continuous sub-arrays. Write an algorithm to minimize the largest sum among these m sub-arrays.
+
+Algo : Initialize;
+            left = max(nums)
+            right = sum(nums)
+            condition ~ feasible: Given an input threshold, then decide if we can split the array into several
+                                  sub-arrays such that every sub-array-sum is less than or equal to threshold.
+        Monotonicity Of The Problem :
+            a.  If feasible(m) is True;
+            b.  All the inputs larger than m can satisfy feasible function
+
+
+
+Example:
+    Input:
+        nums = [7,2,5,10,8]
+        m = 2
+    Output:
+        18
+
+    Explanation:
+        There are four ways to split nums into two sub-arrays. The best way is to split it into [7,2,5] and [10,8],
+        where the largest sum among the two sub-arrays is only 18.
 
 """
 
 
 class Solution:
-    def isBadVersion(self, m: int) -> bool:
-        pass
+    def __init__(self) -> None:
+        self.nums = []
+        self.m = 0
 
-    def firstBadVersion(self, n: int) -> int:
-        # Search Space --> [1, 2, 3, ..., n]
-        left = 1
-        right = n
+    def feasible(self, threshold: int) -> bool:
+        count = 1
+        total = 0
+        for num in self.nums:
+            total += num
+            if total > threshold:  # Too large; put it in next sub-array
+                total = num
+                count += 1
+                if count > self.m:  # Cannot split within m sub-arrays
+                    return False
+        return True
+
+    def split_array(self, nums: list[int], m: int) -> int:
+        self.nums = nums
+        self.m = m
+        left = max(self.nums)
+        right = sum(self.nums)
 
         while left < right:
-            mid = left + (right-left)//2
-            if self.isBadVersion(mid):
+            mid = left + (right - left) // 2
+            if self.feasible(mid):
                 right = mid
             else:
                 left = mid + 1
         return left
+
+
+sol = Solution()
+n1 = [7, 2, 5, 10, 8]
+m1 = 2
+print(sol.split_array(nums=n1, m=m1))
