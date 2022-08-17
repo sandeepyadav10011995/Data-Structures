@@ -1,6 +1,7 @@
 """
 BFS
-
+Time: O(|V| + |E|)
+Space: O(|V|)
 
 """
 from enum import Enum
@@ -37,12 +38,14 @@ class Solution:
   
   
   
-  """
-  DFS
-  
-  """
-  
-  from enum import Enum
+"""
+DFS
+Time: O(|V| + |E|)
+Space: O(|V|)
+
+"""
+
+from enum import Enum
 
 
 class Color(Enum):
