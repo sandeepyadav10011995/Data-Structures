@@ -1,0 +1,98 @@
+/******************* Online brokerage system : Low level design *******************/
+/** Definition: **/
+An online stock brokerage system facilitates its users to buy and sell stocks. It allows users to track and execute transactions, and to see performance of different stocks in their portfolios.
+
+It also alerts them (sends emails and push notifications) to changes in the stocks.
+ 
+/** System Requirements  **/
+    
+1. Any user should be able to buy/sell stocks
+2. A user can have multiple watchlists containing multiple stocks.
+3. Deposit and withdrawal of money should be possible.
+4. Send notifications when trades are executed.
+    
+    
+/** Flows to discuss. **/
+1. Place buy order.
+2. Place sell order.
+3. Receive market data.
+    
+
+/** What is expected from the design **/
+1. Data modelling should cover every component/requirement of our system with appropriate relationships between models. Besides requirements, consider the "Flows to discuss" as well so as to not miss any important entity used in them.
+2. Use of design patterns and standard code practices in design of classes/interfaces.
+    
+    
+    
+/*************************** Start below *************************/
+Three Main actors
+1. Admin
+2. Member
+3. System
+
+Classes
+1. Account
+    - name
+    - address
+    - email
+    -phone
+    - total funds
+    - funds that are available for trading
+    
+    Two -- Admin, Customer
+    
+2. Stock Exchange
+    1. Fetch all the stocks and the current prices from the stock exchange
+    2. Places the stock trading orders on the stock exchange
+
+3. Stock - Builing Block
+    - symbol
+    - name
+    - current price
+    - lowest_price
+    - highest_price
+    etc.
+        
+        
+
+        
+4. Watchlist
+    - List of all the stocks
+    
+5. Order - buy or Sell
+    1. Market Order
+    2. Limit Order
+    3. Stop Loss Order
+    4. Stop Limit Order
+    
+6. 
+
+
+Enums
+1. OrderStatus
+2. AccountStatus
+3. ReturnType
+4. Address
+
+
+
+
+StockInventory
+    This will fetch the latest prices from Stock Exchange. All the system componenets
+    will read from this
+        
+        
+ Notifications
+ - SMS
+ - Email Notification
+ - Push Notification
+        
+    
+    
+    
+    
+    
+    
+    
+
+
