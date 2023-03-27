@@ -51,8 +51,8 @@
                     1. MinHeap  --> Inc Value --> Heapify
                     2. Max Heap --> Dec Value --> Heapify
 
-                    3. Min Heap --> Inc Value --> Percolate Up
-                    4. Max Heap --> Dec Value --> Percolate Up
+                    3. Min Heap --> Dec Value --> Percolate Up
+                    4. Max Heap --> Inc Value --> Percolate Up
 
     Note : This comes really handy in Indexed Priority Queue(IPQ) implementation and Updates in IPQ Kruskal's and
     Dijkstra's Algorithm
