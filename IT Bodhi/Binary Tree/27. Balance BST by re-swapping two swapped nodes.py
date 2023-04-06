@@ -21,6 +21,7 @@ Solution 1: Inorder Traversal --> We will get two values which are swap them.
 
             And then create a Balanced BST from the sorted inorder.
 """
+import math
 from dataclasses import dataclass
 from typing import Any
 
@@ -34,6 +35,34 @@ class TreeNode:
 
 @dataclass
 class SwapPair:
+    prev: TreeNode = None
     first: TreeNode = None
-    second: TreeNode = None
+    last: TreeNode = None
 
+
+class Solution:
+    def _inOrder(self, root: TreeNode, sp: SwapPair) -> None:
+        if root is None:
+            return
+        self._inOrder(root.left, sp)
+        if sp.prev and root.val < sp.prev.val:
+            if sp.first is None:
+                sp.first = sp.prev
+            sp.last = root
+        sp.prev = root
+        self._inOrder(root.right, sp)
+
+    def recoverBST(self, root: TreeNode) -> None:
+        sp = SwapPair()
+        sp.prev = TreeNode(val=-math.inf)
+        self._inOrder(root, sp)
+
+        if sp.first and sp.last:
+            sp.first.val, sp.last.val = sp.last.val, sp.first.val
+
+
+
+sol = Solution()
+root1 = TreeNode(val=2, left=TreeNode(val=1), right=TreeNode(val=3, left=TreeNode(val=4)))
+sol.recoverBST(root=root1)
+print(root1)
