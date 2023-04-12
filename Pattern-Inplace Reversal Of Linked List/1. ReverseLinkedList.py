@@ -1,14 +1,12 @@
 """
 In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is
 that we need to do this in-place, i.e., using the existing node objects and without using extra memory.
-
 In-place Reversal of a LinkedList pattern describes an efficient way to solve the above problem. In the following
 chapters, we will solve a bunch of problems using this pattern.
-
 Problem Statement: Given the head of a Singly LinkedList, reverse the LinkedList. Write a function to return the new
                    head of the reversed LinkedList.
-
 """
+from typing import Any
 
 
 class Node:
@@ -19,7 +17,10 @@ class Node:
 
 class ReverseLinkedList:
     @staticmethod
-    def reverse(head: Node) -> Node:
+    def reverse(head: Node) -> Node | None | Any:
+        # Base Case
+        if head is None or head.next is None:
+            return head
         previous = None
         current = head
         future = None
@@ -61,3 +62,18 @@ main()
 Time Complexity: O(N)
 Space Complexity: O(1)
 """
+
+
+# Recursive Approach
+
+
+class ReverseLinkedListRA:
+    def reverseLinkedList(self, head: Node) -> Node | None:
+        # Base Case
+        if head is None or head.next is None:
+            return head
+
+        rev_head = self.reverseLinkedList(head.next)
+        head.next.next = head
+        head.next = None
+        return rev_head

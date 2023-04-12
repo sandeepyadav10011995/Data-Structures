@@ -1,25 +1,21 @@
 """
 In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is
 that we need to do this in-place, i.e., using the existing node objects and without using extra memory.
-
 In-place Reversal of a LinkedList pattern describes an efficient way to solve the above problem. In the following
 chapters, we will solve a bunch of problems using this pattern.
-
 Problem Statement : Given the head of a LinkedList and a number ‘k’, reverse every ‘k’ sized sub-list starting from the
                     head?
                     If, in the end, you are left with a sub-list with less than ‘k’ elements, reverse it too.
-
 Algo : The problem follows the In-place Reversal of a LinkedList pattern and is quite similar to Reverse a Sub-list.
        The only difference is that we have to reverse all the sub-lists. We can use the same approach, starting with the
        first sub-list (i.e. p=1, q=k) and keep reversing all the sub-lists of size ‘k’.
-
 """
 
 
 class Node:
-    def __init__(self, value, next=None):
+    def __init__(self, value, _next=None):
         self.value = value
-        self.next = next
+        self.next = _next
 
 
 class ReverseKGroups:
@@ -29,8 +25,8 @@ class ReverseKGroups:
         if k <= 1 or head is None:
             return head
 
-        current = head
         previous = None
+        current = head
 
         while True:
             last_node_of_previous_part = previous
@@ -96,9 +92,6 @@ Space Complexity: O(1)
 
 """
 Recursive Approach --:
-
-
-
 """
 
 
@@ -133,4 +126,3 @@ class ReverseKGroups2:
             return rev_head
 
         return head
-

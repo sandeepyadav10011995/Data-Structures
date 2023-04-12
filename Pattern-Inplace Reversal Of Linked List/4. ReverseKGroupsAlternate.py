@@ -1,14 +1,11 @@
 """
 In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is
 that we need to do this in-place, i.e., using the existing node objects and without using extra memory.
-
 In-place Reversal of a LinkedList pattern describes an efficient way to solve the above problem. In the following
 chapters, we will solve a bunch of problems using this pattern.
-
 Problem Statement : Given the head of a LinkedList and a number ‘k’, reverse every alternating ‘k’ sized sub-list
                     starting from the head?
 If, in the end, you are left with a sub-list with less than ‘k’ elements, reverse it too.
-
 """
 
 
@@ -25,8 +22,8 @@ class ReverseKGroupsAlternate:
         if k <= 1 or head is None:
             return head
 
-        current = head
         previous = None
+        current = head
 
         while current:
             last_node_of_previous_part = previous

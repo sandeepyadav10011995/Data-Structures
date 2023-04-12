@@ -1,29 +1,23 @@
 """
 In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is
 that we need to do this in-place, i.e., using the existing node objects and without using extra memory.
-
 In-place Reversal of a LinkedList pattern describes an efficient way to solve the above problem. In the following
 chapters, we will solve a bunch of problems using this pattern.
-
 Problem Statement: Given the head of a LinkedList and two positions ‘p’ and ‘q’, reverse the LinkedList from position
                    ‘p’ to ‘q’?
-
 Algo : The problem follows the In-place Reversal of a LinkedList pattern. We can use a similar approach as discussed in
        Reverse a LinkedList. Here are the steps we need to follow:
-
         1. Skip the first p-1 nodes, to reach the node at position p.
         2. Remember the node at position p-1 to be used later to connect with the reversed sub-list.
         3. Next, reverse the nodes from p to q using the same approach discussed in Reverse a LinkedList.
         4. Connect the p-1 and q+1 nodes to the reversed sub-list.
-
-
 """
 
 
 class Node:
-    def __init__(self, value, next=None):
+    def __init__(self, value, _next=None):
         self.value = value
-        self.next = next
+        self.next = _next
 
 
 class ReverseSubList:
@@ -90,7 +84,7 @@ def main():
     rsl.print_list(result)
 
 
-# main()
+main()
 
 
 """
@@ -156,7 +150,7 @@ def main():
     rsl.print_list(result)
 
 
-main()
+# main()
 
 
 """
