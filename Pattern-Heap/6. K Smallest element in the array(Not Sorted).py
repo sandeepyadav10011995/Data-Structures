@@ -135,7 +135,7 @@ class KthSmallestElement:
         # go through the remaining numbers of the array, if the number from the array is smaller than the
         # top(biggest) number of the heap, remove the top number from heap and add the number from array
         for i in range(k, len(nums)):
-            if -nums[i] > max_heap[0]:
+            if -nums[i] <= max_heap[0]:
                 heappop(max_heap)
                 heappush(max_heap, -nums[i])
 
