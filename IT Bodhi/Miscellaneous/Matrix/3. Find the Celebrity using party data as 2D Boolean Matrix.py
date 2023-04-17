@@ -27,3 +27,25 @@ Approach 2: Starting Point -: 1st row, Last col
     TC: O(M+N)
     SC: O(1)
 """
+
+
+def find_celebrity(matrix: list[list[int]]):
+    n = len(matrix)
+    potential_celebrity = 0
+
+    # Step 1: Iterate through each row of the matrix.
+    for i in range(n):
+        # Step 2: Check if there is a 1 at every column except for the person's own column.
+        if all(matrix[i][j] == 1 for j in range(n) if j != i):
+            potential_celebrity = i
+            break
+
+    # Step 3: Iterate through every other person in the matrix to check if they know the potential celebrity.
+    for i in range(n):
+        if i != potential_celebrity:
+            if matrix[potential_celebrity][i] == 1 or matrix[i][potential_celebrity] == 0:
+                # The potential celebrity cannot be the true celebrity.
+                return -1
+
+    # Step 4: If no person is disqualified in step 3, then the potential celebrity is the true celebrity.
+    return potential_celebrity
