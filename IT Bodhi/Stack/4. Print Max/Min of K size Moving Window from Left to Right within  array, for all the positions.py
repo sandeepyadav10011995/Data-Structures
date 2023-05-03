@@ -45,3 +45,67 @@ sol = Solution()
 print(sol.maxWindowAllPositions(nums=[5, 4, 8, 3, 9, 10, 12, 5, 6, 9, 8, 13], k=3))
 
 
+class Solution1:
+    @staticmethod
+    def minWindowAllPositions(nums: list[int], k: int):
+        N = len(nums)
+        if k > N:
+            return []
+
+        res = []
+        window = deque()
+        for idx in range(N):
+            window.append(nums[idx])
+            # Store the min value
+            if idx >= k-1:
+                res.append(min(window))
+                window.popleft()
+        return res
+
+sol = Solution1()
+print(sol.minWindowAllPositions(nums=[2,3,4,1,6,-9,10,23], k=3))
+print(sol.minWindowAllPositions(nums=[2,3,4,6,6,-9,10,23], k=3))
+"""
+TC: O(N*K)
+SC: O(K)
+"""
+
+class Solution2:
+    @staticmethod
+    def minWindowAllPositions(nums: list[int], k: int):
+        N = len(nums)
+        if k > N:
+            return []
+
+        res = []
+        window = deque()
+
+        for idx in range(N):
+            while window and window[0] <= idx - k:
+                window.popleft()
+
+            while window and nums[window[-1]] > nums[idx]:
+                window.pop()
+
+            window.append(idx)
+
+            if idx >= k - 1:
+                res.append(nums[window[0]])
+
+        return res
+
+
+sol = Solution2()
+print(sol.minWindowAllPositions(nums=[2,3,4,1,6,-9,10,23], k=3))
+print(sol.minWindowAllPositions(nums=[2,3,4,6,6,-9,10,23], k=3))
+"""
+TC: O(N)
+SC: O(K)
+"""
+
+
+
+
+
+
+
